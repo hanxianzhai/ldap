@@ -161,6 +161,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY lam-nginx.conf /etc/nginx/conf.d/
 COPY supervisord_fpm.conf /etc/supervisor/conf.d/
 COPY supervisord_nginx.conf /etc/supervisor/conf.d/
+COPY supervisord_ldap.conf /etc/supervisor/conf.d/
 
 RUN set -ex \
 	&&apt-get update \
