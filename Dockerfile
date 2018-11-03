@@ -193,14 +193,14 @@ RUN set -ex \
 
 ENV	LDAP_ROOTPASS hanxianzhai
 ENV	LDAP_ORGANISATION Cwag Inc.
-ENV	LDAP_DOMAIN itop.com
+ENV	LDAP_DOMAIN itop.vip
 
 
 VOLUME "/var/www/html"
 
 #ENV Administrator_password=""
 add	./slapd_start /usr/bin/slapd_start
-
+RUN chmod +x /usr/bin/slapd_start
 EXPOSE 80 389 443 636
 
 
