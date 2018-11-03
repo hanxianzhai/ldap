@@ -165,11 +165,11 @@ COPY supervisord_ldap.conf /etc/supervisor/conf.d/
 
 RUN set -ex \
 	&&apt-get update \
-	&&echo slapd slapd/password1 password hanxianzhai | debconf-set-selections \
-	&&echo slapd slapd/password2 password hanxianzhai | debconf-set-selections \
+	#&&echo slapd slapd/password1 password hanxianzhai | debconf-set-selections \
+	#&&echo slapd slapd/password2 password hanxianzhai | debconf-set-selections \
 	&&apt-get install -y --no-install-recommends --no-install-suggests \
 		supervisor \
-		slapd \
+	&&DEBIAN_FRONTEND=noninteractive apt-get install -y slapd \
 	&&apt-get remove -y \
 		libfreetype6-dev \
 		libjpeg-dev \
@@ -191,11 +191,18 @@ RUN set -ex \
 	&& cd \
 	&& rm -rf /tmp/*
 
+ENV	LDAP_ROOTPASS hanxianzhai
+ENV	LDAP_ORGANISATION Cwag Inc.
+ENV	LDAP_DOMAIN itop.com
+
+
 VOLUME "/var/www/html"
 
 #ENV Administrator_password=""
+add	./slapd-start /usr/bin/slapd-start
 
 EXPOSE 80 389 443 636
+
 
 STOPSIGNAL SIGTERM
 
