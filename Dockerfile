@@ -199,7 +199,7 @@ ENV	LDAP_DOMAIN itop.com
 VOLUME "/var/www/html"
 
 #ENV Administrator_password=""
-add	./slapd-start /usr/bin/slapd-start
+add	./slapd_start /usr/bin/slapd_start
 
 EXPOSE 80 389 443 636
 
